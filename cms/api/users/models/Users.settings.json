@@ -1,8 +1,8 @@
 {
   "connection": "default",
-  "collectionName": "books",
+  "collectionName": "users",
   "info": {
-    "name": "books",
+    "name": "users",
     "description": ""
   },
   "options": {
@@ -14,18 +14,19 @@
     "comment": ""
   },
   "attributes": {
-    "title": {
+    "username": {
+      "type": "string",
       "unique": true,
-      "required": true,
-      "type": "string"
+      "required": true
     },
-    "free": {
+    "password": {
       "required": true,
-      "type": "boolean"
+      "type": "password"
     },
-    "users": {
-      "collection": "users",
-      "via": "books"
+    "books": {
+      "collection": "books",
+      "via": "users",
+      "dominant": true
     }
   }
 }
