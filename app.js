@@ -21,7 +21,7 @@ connect.then((db) => {
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var booksRouter = require('./models/books');
-var favoritesRouter = require('./models/favorites');
+// var favoritesRouter = require('./models/favorites');
 
 var app = express();
 
