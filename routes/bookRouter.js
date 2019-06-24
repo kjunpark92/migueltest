@@ -10,10 +10,23 @@ bookRouter.use(bodyParser.json())
 
 bookRouter.route('/')
 .get((req,res,next) => {
-    Books.find({}, (err, book) => {
-        if (err) throw err;
+    Books.find({})
+    .then((books) => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(books);
+    }, (err) => next(err))
+    .catch((err) => next(err));
+})
+.post((req, res, next) => {
+    Books.create(req.body)
+    .then((book) => {
+        console.log('Book Created ', book);
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
         res.json(book);
-    });
+    }, (err) => next(err))
+    .catch((err) => next(err));
 })
 
 bookRouter.route(':/bookId')

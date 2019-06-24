@@ -15,8 +15,17 @@ router.route('/')
     }
     res.json(users);
   })
-});
-
+})
+.post((req, res, next) => {
+  OwnedSchema.create(req.body)
+  .then((owned) => {
+      console.log('user Created ', owned);
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'application/json');
+      res.json(owned);
+  }, (err) => next(err))
+  .catch((err) => next(err));
+})
 router.post('/signup', (req, res, next) => {
   User.register(new User({username: req.body.username}), 
     req.body.password, (err, user) => {

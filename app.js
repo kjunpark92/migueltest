@@ -6,9 +6,9 @@ var logger = require('morgan');
 
 const mongoose = require('mongoose');
 const session = require('express-session');
-const FileStore = require('session-file-store')(session);
-const passport = require('passport');
-const authenticate = require('./authenticate');
+// const FileStore = require('session-file-store')(session);
+// const passport = require('passport');
+// const authenticate = require('./authenticate');
 const config = require('./config');
 
 const url = config.mongoUrl;
@@ -20,7 +20,7 @@ connect.then((db) => {
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var booksRouter = require('./models/books');
+var booksRouter = require('./routes/bookRouter');
 // var favoritesRouter = require('./models/favorites');
 
 var app = express();
@@ -38,7 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/books', booksRouter);
-app.use('/favorites', favoritesRouter);
+// app.use('/favorites', favoritesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

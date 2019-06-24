@@ -1,6 +1,21 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+var userSchema = new Schema({
+    firstname: {
+      type: String,
+        default: ''
+    },
+    lastname: {
+      type: String,
+        default: ''
+    },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }
+});
+
 const bookSchema = new Schema({
     title: {
         type: String,
@@ -9,7 +24,12 @@ const bookSchema = new Schema({
     free: {
         type: Boolean,
         required: true
-    }
+    },
+    owned: {
+        type: Boolean,
+        default: false
+    },
+    user: [userSchema]
 }, {
     timestamps: true
   });
