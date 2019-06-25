@@ -17,7 +17,7 @@ router.route('/')
   })
 })
 .post((req, res, next) => {
-  OwnedSchema.create(req.body)
+  User.create(req.body)
   .then((owned) => {
       console.log('user Created ', owned);
       res.statusCode = 200;
@@ -26,6 +26,12 @@ router.route('/')
   }, (err) => next(err))
   .catch((err) => next(err));
 })
+.delete((req, res, next) => {
+  User.remove({}, function (err, resp) {
+      if (err) throw err;
+      res.json(resp);
+  });
+});
 router.post('/signup', (req, res, next) => {
   User.register(new User({username: req.body.username}), 
     req.body.password, (err, user) => {

@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var passportLocalMongoose = require('passport-local-mongoose');
 
-const OwnedSchema = new Schema({
+const Owned = new Schema({
   title: {
     type: String,
     required: true
@@ -24,11 +24,11 @@ var User = new Schema({
       type: String,
         default: ''
     },
-    owned: [OwnedSchema]
+    owned: [Owned]
 });
 
 User.plugin(passportLocalMongoose);
-OwnedSchema.plugin(passportLocalMongoose);
+// Owned.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model('User', User);
-module.exports = mongoose.model('OwnedSchema', OwnedSchema);
+// module.exports = mongoose.model('Owned', Owned);

@@ -9,11 +9,11 @@ var userSchema = new Schema({
     lastname: {
       type: String,
         default: ''
-    },
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
     }
+    // user: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: 'User'
+    // }
 });
 
 const bookSchema = new Schema({
@@ -24,10 +24,6 @@ const bookSchema = new Schema({
     free: {
         type: Boolean,
         required: true
-    },
-    owned: {
-        type: Boolean,
-        default: false
     },
     user: [userSchema]
 }, {
